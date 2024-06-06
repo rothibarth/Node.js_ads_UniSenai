@@ -1,3 +1,7 @@
-const sh = require("superheroes");
+import superheroes from 'superheroes';
 
-console.log(sh.random());
+import chalk from 'chalk';
+
+console.log(chalk.blue(superheroes));
+
+// console.log(superheroes);
