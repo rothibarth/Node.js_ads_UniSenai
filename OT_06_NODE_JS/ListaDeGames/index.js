@@ -36,6 +36,7 @@ app.post("/novogame", (req, res) =>{
     let title = req.body.title;
     let studio = req.body.studio;
     let price = req.body.price;
+    let newGame = {title: title, studio: studio, price: price}
 
     console.log(title);
     console.log(studio);
