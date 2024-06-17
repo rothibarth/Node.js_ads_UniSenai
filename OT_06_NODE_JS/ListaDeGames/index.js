@@ -36,7 +36,9 @@ app.post("/novogame", (req, res) =>{
     let title = req.body.title;
     let studio = req.body.studio;
     let price = req.body.price;
-    let newGame = {title: title, studio: studio, price: price}
+    let newGame = {title, studio, price}
+    //Para enviar estes dados para o array agora utlizamos o metodo push do js
+    games.push(newGame);
 
     console.log(title);
     console.log(studio);
