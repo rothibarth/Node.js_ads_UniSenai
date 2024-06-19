@@ -48,7 +48,7 @@ app.post("/novogame", (req, res) =>{
 
 });
 
-//att um curso      //Nada foi editado apenas fiz alguns testes
+//att um curso      
 app.put('/novogame/:index', (req, res) =>{
     const{ index } = req.params;
     let title = req.body.title;
