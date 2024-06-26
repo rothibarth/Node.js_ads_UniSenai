@@ -139,26 +139,26 @@ const colecaoUf = [
     export default colecaoUf;
 
 //Exemplo da OT --------------------------
-const colecaoTimes = [
-    {
-        id: 1,
-        nome: "Flamengo"
-    },
+// const colecaoTimes = [
+//     {
+//         id: 1,
+//         nome: "Flamengo"
+//     },
 
-    {
-        id: 2,
-        nome: "Atletico Mineiro"
-    },
+//     {
+//         id: 2,
+//         nome: "Atletico Mineiro"
+//     },
 
-    {
-        id: 3,
-        nome: "Palmeiras"
-    },
+//     {
+//         id: 3,
+//         nome: "Palmeiras"
+//     },
 
-    {
-        id: 4,
-        nome: "São Paulo"
-    },
+//     {
+//         id: 4,
+//         nome: "São Paulo"
+//     },
 
 
-]
+// ]
