@@ -1,5 +1,4 @@
 import express from 'express';
-import { get } from 'http';
 import colecaoUf from './dados.js';
 
 const app = express();
@@ -9,25 +8,30 @@ app.get('/ufs', (req, res) =>{
     res.json(colecaoUf)
 });
 
-// app.get('/ufs/teste', (req ,res) =>{
-//         res.send({"teste" : "teste"})
-//     }
-// );
-
-// app.get('/ufs/:iduf', (req ,res) =>{
-
-//     const idUF = req.params.iduf;
-
-//     res.send({"teste" : `${idUF}` });
-// });
 
 app.get('/ufs/:iduf', (req, res) => {
     const idUF = parseInt(req.params.iduf);
-    const uf = colecaoUf.find(u => u.id === idUF);
+    let mensagemErro = '';
+    let uf;
 
-    res.json(uf);
-}
-);
+    if(!(isNaN(idUF))){
+        uf = colecaoUf.find(u => u.id === idUF);
+
+        if(!uf){
+            mensagemErro = 'UF não encontrada';
+        }
+    }else{
+        mensagemErro = 'Requisição inválida';
+    }
+
+
+    if(uf){
+        res.json(uf);
+    }else{
+        res.status(404).send({"erro" : mensagemErro});
+    }
+
+});
 
 app.listen(8080, () => {
 
