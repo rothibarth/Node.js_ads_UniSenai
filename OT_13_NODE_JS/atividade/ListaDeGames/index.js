@@ -4,7 +4,6 @@ const express = require("express");
 const app = express();
 
 //Lista de Games
-
 let games = [
     {title: "Sea of Thieves", studio: "Rare", price: 30},
     {title: "WOW", studio: "Blizzard", price: 120},
@@ -22,47 +21,47 @@ let games = [
 
 ]
 
-app.listen(3080, () =>{
-    console.log("Servidor rodando!");
-})
+const buscarGamesPorTitle = (titleGames) =>{
+    return games.filter(games => games.title.toLowerCase().includes(titleGames.toLowerCase()));
+};
 
-app.get("/", (req, res) =>{
-    res.json(games);
-})
+app.get('/games', (req, res) => {
 
-app.use(express.json());
+    const titleGames = req.query.busca;
+    const resultado = titleGames ? buscarGamesPorTitle(titleGames) : games;
 
-app.post("/novogame", (req, res) =>{
-    let title = req.body.title;
-    let studio = req.body.studio;
-    let price = req.body.price;
-    let newGame = {title, studio, price}
-    //Para enviar estes dados para o array agora utlizamos o metodo push do js
-    games.push(newGame);
-
-    console.log(title);
-    console.log(studio);
-    console.log(price); 
-
-    res.send("OK");
+    if(resultado.length > 0){
+        res.json(resultado);
+    }else{
+        res.status(404).send({"erro" : "Nenhuma UF encontrada"});
+    }
 
 });
 
-//att um curso      
-app.put('/novogame/:index', (req, res) =>{
-    const{ index } = req.params;
-    let title = req.body.title;
-    let studio = req.body.studio;
-    let price = req.body.price;
+app.get('/games/:idgames', (req, res) => {
+    const idGames = parseInt(req.params.idgames);
+    let mensagemErro = '';
+    let game;
 
-        games[index] = {title, studio, price};
+    if(!(isNaN(idgames))){
+        game = games.find(u => u.id === idGames);
 
-    return res.json(games);
-})
+        if(!game){
+            mensagemErro = 'UF não encontrada';
+        }
+    }else{
+        mensagemErro = 'Requisição inválida';
+    }
 
-app.delete("/:index", (req, res) =>{
-    const { index } = req.params;
-    games.splice(index,1);
 
-    return res.json({message: "O jogo foi deletado"});
+    if(game){
+        res.json(game);
+    }else{
+        res.status(404).send({"erro" : mensagemErro});
+    }
+
+});
+
+app.listen(3080, () =>{
+    console.log("Servidor rodando!");
 })

@@ -20,6 +20,7 @@ app.get('/ufs', (req, res) => {
 
 });
 
+
 app.get('/ufs/:iduf', (req, res) => {
     const idUF = parseInt(req.params.iduf);
     let mensagemErro = '';
