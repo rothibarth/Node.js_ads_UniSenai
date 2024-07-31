@@ -4,19 +4,50 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TODOLIST NODE</title>
+    <title>Lista de tarefas NodeJS</title>
+
+    <link rel="stylesheet" href="../public/style.css">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.11.1/dist/sweetalert2.min.css" rel="stylesheet"> -->
 </head>
-<body>
+<body class="container">
     
     <div class="tarefas">
+        <h3>TODOLIST NODE</h3>
+
+        <form class="d-flex" method="post" onsubmit="return validarFormulario()">
+            
+            <input type="text" class="form-control" name="tarefa" />
+            <input type="submit" name="acao" class="btn btn-primary" value="Inserir" />
+
+        </form>
 
         <% for(let i = 0; i < tasksList.length; i++){ %>
 
-            <p><%= tasksList[i] %></p>
-            
+            <p><%= tasksList[i] %> | <a href="/deletar/<%= i %>"><i class="bi bi-trash"></i></a></p>
+
         <% } %>
 
     </div>
 
+    <!-- Adicine o Bootstrap JS(opicional, se prec) -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.11.1/dist/sweetalert2.all.min.js"></script> -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.css"></script>
+
 </body>
+
+<script>
+    function validarFormulario(){
+
+        var tarefa = document.getElementsByName("tarefa")[0].value;
+
+        if(tarefa.trim() === ''){
+            alert("Por favor, preencha a tarefa antes de enviar.");
+            return false; //evita o envio do formulario se o campo estiver vazio
+        }
+
+        return true; //Permite o envio do formulario se o campo estiver preenchido
+    }
+</script>
 </html>
