@@ -21,19 +21,18 @@ app.get('/', (req,res)=>{
     res.render('index', {tasksList: tasks});
 });
 
-app.post('/',(req, res)=>{
+app.post('/', (req, res) => {
     tasks.push(req.body.task);
-    res.render('index', {tasksList: tasks});
-})
+    res.redirect('/'); // Redireciona para a página inicial após adicionar uma nova tarefa
+});
 
-app.get('/deletar/:id', (req,res)=>{
-    tasks = tasks.filter(function(val, index){
-        if(index != req.params.id){
-            return val;
-        }
-    })
-    res.render('index', {tasksList:tasks});
-})
+app.get('/deletar/:id', (req, res) => {
+    const id = parseInt(req.params.id);
+    if (id >= 0 && id < tasks.length) {
+        tasks.splice(id, 1);
+    }
+    res.redirect('/'); // Redireciona para a página inicial após deletar a tarefa
+});
 
 //Comment Code
 app.listen(5000, ()=> {

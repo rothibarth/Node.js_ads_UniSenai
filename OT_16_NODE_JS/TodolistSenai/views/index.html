@@ -73,17 +73,30 @@ body{
 
 </body>
 
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+
 <script>
     function validarFormulario(){
 
         var task = document.getElementsByName("task")[0].value;
 
         if(task.trim() == ''){
-            alert("Por favor, preencha a tarefa antes de enviar.");
+
+            Swal.fire({
+                icon: 'error',
+                title: 'ops....',
+                text: 'Por favor, preencha  a tarefa antes de enviar',
+            });
+
             return false; //evita o envio do formulario se o campo estiver vazio
         }
 
         return true; //Permite o envio do formulario se o campo estiver preenchido
     }
 </script>
+
+
+
+
 </html>
