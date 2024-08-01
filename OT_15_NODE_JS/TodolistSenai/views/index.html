@@ -76,9 +76,9 @@ body{
 <script>
     function validarFormulario(){
 
-        var tarefa = document.getElementsByName("tarefa")[0].value;
+        var task = document.getElementsByName("task")[0].value;
 
-        if(tarefa.trim() === ''){
+        if(task.trim() == ''){
             alert("Por favor, preencha a tarefa antes de enviar.");
             return false; //evita o envio do formulario se o campo estiver vazio
         }
